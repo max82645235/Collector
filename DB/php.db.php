@@ -1,19 +1,18 @@
 <?php
 Class DB {
 
-    private $link_id;
+    private $link_id;//
     private $handle;
     private $is_log;
     private $time;
 
     //¹¹Ôìº¯Êı
-    public function __construct() {
+    public function __construct($db_config) {
         $this->time = $this->microtime_float();
-        require_once("config\config.php");
-        $this->connect($db_config['DB']["hostname"], $db_config['DB']["username"], $db_config['DB']["password"], $db_config['DB']["database"], $db_config['DB']["pconnect"]);
-        $this->is_log = $db_config['DB']["log"];
+        $this->connect($db_config["hostname"], $db_config["username"], $db_config["password"], $db_config["database"], $db_config["pconnect"]);
+        $this->is_log = $db_config["log"];
         if($this->is_log){
-            $handle = fopen($db_config['DB']["logfilepath"]."dblog.txt", "a+");
+            $handle = fopen($db_config["logfilepath"]."dblog.txt", "a+");
             $this->handle=$handle;
         }
     }

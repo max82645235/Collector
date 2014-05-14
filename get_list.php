@@ -6,6 +6,7 @@
  * Time: 下午5:17
  */
 header("Content-type:text/html;charset=utf-8");
+require_once  '/config/main.php';
 
 include  'phpQuery/querylist.php';
 include  'DB/php.db.php';
@@ -36,7 +37,7 @@ switch($webname)
 
 //数据库操作,批量插入数据库
 $listarr  =  json_decode($json);
-$dbrow = new DB();
+$dbrow = new DB($config['dbConfig']);
 $arrtemp = array();
 
 //写入数据库

@@ -6,12 +6,13 @@
  * Time: 下午
  */
 header("Content-type:text/html;charset=utf-8");
+require_once  '/config/main.php';
 
 include  'phpQuery/querylist.php';
 include  'DB/php.db.php';
 include  'Class/imgs.php';
 
-$dbrow = new DB();
+$dbrow = new DB($config['dbConfig']);
 $stri = 'select * from collectlinks';
 $ret = $dbrow->get_one($stri,1);
 
@@ -28,8 +29,8 @@ $json = $querylist->getJSON();
 
 
 $arr = json_decode($json);
-
-echo $arr[0]->imgs;
+var_dump($arr);exit;
+echo $arr[0]->imgs;exit;
 var_dump($arr);
 
 $imgsdownload = new imgs("http://epaper.yzwb.net/images/2014-05/13/A04/res03_attpic_brief.jpg");
